@@ -1,9 +1,12 @@
+import argparse
+import io
+import sys
 import time
 
 from dataclasses import dataclass
 from pprint import pprint
 
-from etc.data_sample import sample, sample_2, sample_3
+from etc.data_sample import sample_1, sample_2, sample_3, sample_4
 
 
 @dataclass
@@ -111,7 +114,7 @@ def find(k: KnapsackD, marks: list, depth: int, insert_child: bool,
         marks_right.append(mark)
         _mark.append(str(mark))
 
-    # print(f"Depth: {depth:>3} | Marks: {(' '.join(_mark)):<30}", end="")
+    print(f"Depth: {depth:>3} | Marks: {(' '.join(_mark)):<30}", end="")
     print(f"Depth: {depth:>3} | "
           f"Marks: {format((' '.join(_mark)), f'<{item_count * 2 - 1}')}",
           end="")
@@ -196,23 +199,26 @@ def knapsack(cap, data, item_count):
 
     except ValueError:
         print("No possible solution")
+        pass
 
     return optimal
 
 
-def scheduler(source=sample, limit=24*60):
+def scheduler(source=sample_1, limit=24*60):
     """
     * Main program function
     """
     data_count = len(source)
     data, max_prio = prep(source)
-    # limit = 24 * 60
     marks = [[] for _ in range(max_prio)]
     results = [[] for _ in range(max_prio)]
     c_limit = limit - 0
     max_profit = 0
     max_weight = 0
     selected_count = 0
+
+    if not args.v:
+        sys.stdout = io.StringIO()
 
     time_start = time.perf_counter()
 
@@ -246,6 +252,9 @@ def scheduler(source=sample, limit=24*60):
     time_end = time.perf_counter()
     time_running = time_end - time_start
 
+    if not args.v:
+        sys.stdout = sys.__stdout__
+
     print("\nResults:")
 
     for prio_index, item_list in enumerate(results):
@@ -277,10 +286,12 @@ def scheduler(source=sample, limit=24*60):
 
 
 if __name__ == "__main__":
-    _sources = [sample, sample_2, sample_3]
+    argp = argparse.ArgumentParser()
+    argp.add_argument("-d", "--details", help="Show process details", action="store_true", default=False)
+    args = argp.parse_args()
+
+    _sources = [sample_1, sample_2, sample_3, sample_4]
     _sources_l = len(_sources)
-    _source = _sources[0]
-    _limit = 24 * 60
 
     while True:
         try:

@@ -1,8 +1,11 @@
+import argparse
+import io
+import sys
 import time
 
 from pprint import pprint
 
-from etc.data_sample import sample, sample_2, sample_3
+from etc.data_sample import sample_1, sample_2, sample_3, sample_4
 
 
 def prep(source):
@@ -67,7 +70,7 @@ def bruteforce(data_list, weight_limit):
         c_profit, c_weight = count_pw(c_set)
 
         print(f"Profit: {c_profit:>3}; Weight: {c_weight:>3}; set: ", end="")
-        # print(*c_set)
+        print(*c_set)
         print(selector)
 
         generated[set_len-1].append(c_set)
@@ -83,7 +86,7 @@ def bruteforce(data_list, weight_limit):
     return (max_set, max_profit, max_weight)
 
 
-def scheduler(source=sample, limit=24*60):
+def scheduler(source=sample_1, limit=24*60):
     """
     * Main program function
     """
@@ -94,6 +97,9 @@ def scheduler(source=sample, limit=24*60):
     max_profit = 0
     max_weight = 0
     selected_count = 0
+
+    if not args.v:
+        sys.stdout = io.StringIO()
 
     time_start = time.perf_counter()
 
@@ -121,6 +127,9 @@ def scheduler(source=sample, limit=24*60):
     time_end = time.perf_counter()
     time_running = time_end - time_start
 
+    if not args.v:
+        sys.stdout = sys.__stdout__
+
     print("\nResults:")
 
     for prio_index, item_list in enumerate(results):
@@ -146,7 +155,11 @@ def scheduler(source=sample, limit=24*60):
 
 
 if __name__ == "__main__":
-    _sources = [sample, sample_2, sample_3]
+    argp = argparse.ArgumentParser()
+    argp.add_argument("-d", "--details", help="Show process details", action="store_true", default=False)
+    args = argp.parse_args()
+
+    _sources = [sample_1, sample_2, sample_3, sample_4]
     _sources_l = len(_sources)
 
     while True:

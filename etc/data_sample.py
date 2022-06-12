@@ -1,8 +1,32 @@
 #
 # * Nama  Profit Waktu Prioritas
 
+# ? count = 20
+sample_1 = [
+    ('radiology', 115, 145, 3),
+    ('neuter', 155, 105, 4),
+    ('dentistry', 60, 10, 2),
+    ('ultrasound', 25, 10, 1),
+    ('ultrasound', 15, 10, 1),
+    ('vaccination', 20, 15, 2),
+    ('sick visit', 15, 35, 2),
+    ('sick visit', 40, 35, 2),
+    ('dentistry', 55, 35, 2),
+    ('sick visit', 15, 40, 2),
+    ('radiology', 200, 195, 3),
+    ('radiology', 125, 55, 3),
+    ('neuter', 150, 130, 4),
+    ('sick visit', 20, 30, 2),
+    ('microchipping', 70, 80, 2),
+    ('dentistry', 30, 35, 2),
+    ('dentistry', 30, 45, 2),
+    ('sick visit', 25, 25, 2),
+    ('radiology', 30, 225, 3),
+    ('ultrasound', 20, 35, 1)
+]
+
 # ? count = 30
-sample = [
+sample_2 = [
     ('radiology', 50, 130, 3),
     ('vaccination', 15, 30, 2),
     ('wellness exam', 10, 10, 1),
@@ -36,7 +60,7 @@ sample = [
 ]
 
 # ? count = 40
-sample_2 = [
+sample_3 = [
     ('neuter', 110, 45, 4),
     ('ultrasound', 35, 50, 1),
     ('sick visit', 35, 30, 2),
@@ -80,7 +104,7 @@ sample_2 = [
 ]
 
 # ? count = 50
-sample_3 = [
+sample_4 = [
     ('sick visit', 35, 25, 2),
     ('neuter', 45, 130, 4),
     ('vaccination', 25, 30, 2),
