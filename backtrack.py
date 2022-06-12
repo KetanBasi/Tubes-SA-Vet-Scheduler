@@ -217,7 +217,7 @@ def scheduler(source=sample_1, limit=24*60):
     max_weight = 0
     selected_count = 0
 
-    if not args.v:
+    if not args.details:
         sys.stdout = io.StringIO()
 
     time_start = time.perf_counter()
@@ -252,7 +252,7 @@ def scheduler(source=sample_1, limit=24*60):
     time_end = time.perf_counter()
     time_running = time_end - time_start
 
-    if not args.v:
+    if not args.details:
         sys.stdout = sys.__stdout__
 
     print("\nResults:")
