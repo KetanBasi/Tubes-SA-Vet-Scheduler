@@ -16,13 +16,11 @@ class KnapsackD:
     data: list
     data_count: int
     k: int
-
     def __init__(self, cap, data):
         self.cap: int = cap
         self.data: list = data
         self.data_count: int = len(data)
         self.k: int = 0
-
         temp = 0
         for _, val in enumerate(self.data):
             self.k += 1
@@ -51,9 +49,7 @@ def prep(source):
 
     # ? Urut berdasarkan rasio
     for index, item_list in enumerate(tabel_prio):
-        tabel_prio[index] = sorted(item_list,
-                                   key=lambda x: x[4],
-                                   reverse=True)
+        tabel_prio[index] = sorted(item_list, key=lambda x: x[4], reverse=True)
 
     print("\nTabel Prioritas:")
     pprint(tabel_prio)
